@@ -18,18 +18,26 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-3 p-0 bg-light">
+                <div class="col-3 p-0 bg-light" id="sidebar">
                     <h2 class="sidebar-input">Search for a City:</h2>
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text" id="addon-wrapping"></span>
+                    
+                    <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="City Name" aria-label="city" aria-describedby="addon-wrapping">
-                      </div>
+                        <button type="button" class="btn btn-success">Let's Go</button>
+                    </div>
                 </div>
 
+                <div id ="currentDay"></div>
+            </div>
+
+            <div class="col-3 p-0 bg-light">
+                <button type="button" class="btn btn-outline-secondary" style="display: none;"></button>
+            </div>
+
+            <div class="row">
+                <div id="fiveDayForecast"></div>
             </div>
         </div>
-
-
     </main>
 <script src="./assets/script.js"></script>
 </body>
