@@ -1,0 +1,13 @@
+#header {
+    text-align: center;
+}
+
+#sidebar {
+    display: block;
+    padding-left: 0;
+}
+
+.container {
+    margin-right: 20px;
+    margin-left: 20px;;
+}
