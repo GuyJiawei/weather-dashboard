@@ -1,20 +1,30 @@
-var repoList = document.querySelector('ul');
-var fetchButton = document.getElementById('fetch-button');
+
+var searchButton = document.getElementById("search-button");
+
+let cityTarget;
+
+
 
 // Select the main div where the weather data will be displayed
-var mainWeatherDiv = document.getElementById('mainWeatherDiv');
+var currentDayForecast = document.getElementById('currentDay');
+
+var fiveDayForecast = document.getElementById("fiveDayForecast")
 
 // API key for OpenWeatherAPI
-const apiKey = "c73b072cff0fd87e69368bffee7e4662";
+const apiKey = "55ab61f0ac1d88b3323d821a4a63366f";
+
+searchButton.click(function(event){
+  event.preventDefault();
+  cityTarget = $("#cityInput").val().trim();
+  localStorage.setItem("city", cityTarget);
+  getWeatherApi();
+});
 
 // Fetch weather data for each city in the list
 function getWeatherApi() {
 
-  // Loop over each city in the array and plug it into the fetch URL
-  fiveCities.forEach((city) => {
-
     // Fetch latitude and longitude for each city
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=c73b072cff0fd87e69368bffee7e4662`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityTarget}&limit=1&appid=${apiKey}`)
       .then(function(response) {
 
         // Convert the response to JSON format
@@ -29,7 +39,6 @@ function getWeatherApi() {
         // Second function call to fetch the weather data fort the city using the lat and lon
         secondFetch(lat,lon);
       })
-  })
 };
 
 // Fetch weather data for a city using its lat and lon  
@@ -51,18 +60,17 @@ function secondFetch(lat, lon) {
 
             // Populate the div with a template literal and expressions to populate each cities info
             weatherElDiv.innerHTML = `
-            <div class="card" style="width: 15rem;">
+            <div class="card">
+              <h5 class="card-header">${data.city.name}</h5>
               <div class="card-body">
-                <h5 class="card-title">${data.city.name}</h5>
                 <img src='https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png' alt=${data.list[0].weather.description}''>
                 <p class="card-text">Currently in ${data.city.name}, it feels like ${Math.trunc(data.list[0].main.feels_like)}°C</p>
+                <p class="card-text">Wind: ${Math.trunc(data.list[0].wind.speed)}KPH</p>
+                <p class="card-text">Humidity: ${data.list[0].main.humidity}%</p>
               </div>
-            </div>`;
+            </div>`
             
             // Append the weatherElDiv data to the mainWeatherDiv
-            mainWeatherDiv.append(weatherElDiv);
+            currentDayForecast.append(weatherElDiv);
     })
 };
-
-// Call the function to retrieve data and populate the cards
-getWeatherApi();
