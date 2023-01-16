@@ -1,30 +1,42 @@
 
-var searchButton = document.getElementById("search-button");
-
-let cityTarget;
+var searchButton = document.querySelector('#search-button');
+var searchBox = document.querySelector('#cityInput');
+let currentSearch;
 
 
 
 // Select the main div where the weather data will be displayed
-var currentDayForecast = document.getElementById('currentDay');
+var currentDayForecast = document.querySelector('#currentDay');
 
-var fiveDayForecast = document.getElementById("fiveDayForecast")
+var fiveDayForecast = document.querySelector('#fiveDayForecast')
 
 // API key for OpenWeatherAPI
-const apiKey = "55ab61f0ac1d88b3323d821a4a63366f";
+const apiKey = '55ab61f0ac1d88b3323d821a4a63366f';
 
-searchButton.click(function(event){
-  event.preventDefault();
-  cityTarget = $("#cityInput").val().trim();
-  localStorage.setItem("city", cityTarget);
+function saveSearch() {
+  var searchHistory;
+  //redefines global variable currentSearch
+  currentSearch = document.querySelector("#cityInput").value;
+  localStorage.setItem("currentSearch", currentSearch);
+  if (localStorage.getItem('searchhistory')) {
+    searchHistory = [localStorage.getItem('searchhistory')];
+  } else {
+    searchHistory = ['Sydney'];
+  }
+  console.log(searchHistory);
+  searchHistory.unshift(currentSearch);
+  localStorage.setItem("searchhistory", searchHistory);
   getWeatherApi();
-});
+}
+
+searchButton.addEventListener('click', saveSearch);{
+}
 
 // Fetch weather data for each city in the list
 function getWeatherApi() {
 
     // Fetch latitude and longitude for each city
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityTarget}&limit=1&appid=${apiKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${currentSearch}&limit=1&appid=${apiKey}`)
       .then(function(response) {
 
         // Convert the response to JSON format
@@ -63,7 +75,7 @@ function secondFetch(lat, lon) {
             <div class="card">
               <h5 class="card-header">${data.city.name}</h5>
               <div class="card-body">
-                <img src='https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png' alt=${data.list[0].weather.description}''>
+                <img src='https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png' alt=${data.list[0].weather[0].description}''>
                 <p class="card-text">Currently in ${data.city.name}, it feels like ${Math.trunc(data.list[0].main.feels_like)}°C</p>
                 <p class="card-text">Wind: ${Math.trunc(data.list[0].wind.speed)}KPH</p>
                 <p class="card-text">Humidity: ${data.list[0].main.humidity}%</p>
@@ -72,5 +84,60 @@ function secondFetch(lat, lon) {
             
             // Append the weatherElDiv data to the mainWeatherDiv
             currentDayForecast.append(weatherElDiv);
+
+        // Create a new div to display the weather data
+        var fiveDayElDiv = document.createElement('div');
+
+        // Populate the div with a template literal and expressions to populate each cities info
+        fiveDayElDiv.innerHTML = `
+        <div class="card-group">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">${data.list[9].dt_txt}</p>>
+              <img src='https://openweathermap.org/img/w/${data.list[9].weather[0].icon}.png' alt=${data.list[9].weather.description}''>
+              <p class="card-text">Temp: ${Math.trunc(data.list[9].main.feels_like)}°C</p>
+              <p class="card-text">Wind: ${Math.trunc(data.list[9].wind.speed)}KPH</p>
+              <p class="card-text">Humidity: ${data.list[9].main.humidity}%</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">${data.list[17].dt_txt}</p>>
+              <img src='https://openweathermap.org/img/w/${data.list[17].weather[0].icon}.png' alt=${data.list[17].weather.description}''>
+              <p class="card-text">Temp: ${Math.trunc(data.list[17].main.feels_like)}°C</p>
+              <p class="card-text">Wind: ${Math.trunc(data.list[17].wind.speed)}KPH</p>
+              <p class="card-text">Humidity: ${data.list[17].main.humidity}%</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">${data.list[25].dt_txt}</p>>
+              <img src='https://openweathermap.org/img/w/${data.list[25].weather[0].icon}.png' alt=${data.list[25].weather.description}''>
+              <p class="card-text">Temp: ${Math.trunc(data.list[25].main.feels_like)}°C</p>
+              <p class="card-text">Wind: ${Math.trunc(data.list[25].wind.speed)}KPH</p>
+              <p class="card-text">Humidity: ${data.list[25].main.humidity}%</p>
+            </div>
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">${data.list[33].dt_txt}</p>>
+              <img src='https://openweathermap.org/img/w/${data.list[33].weather[0].icon}.png' alt=${data.list[33].weather.description}''>
+              <p class="card-text">Temp: ${Math.trunc(data.list[33].main.feels_like)}°C</p>
+              <p class="card-text">Wind: ${Math.trunc(data.list[33].wind.speed)}KPH</p>
+              <p class="card-text">Humidity: ${data.list[33].main.humidity}%</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">${data.list[39].dt_txt}</p>>
+              <img src='https://openweathermap.org/img/w/${data.list[39].weather[0].icon}.png' alt=${data.list[39].weather.description}''>
+              <p class="card-text">Temp: ${Math.trunc(data.list[39].main.feels_like)}°C</p>
+              <p class="card-text">Wind: ${Math.trunc(data.list[39].wind.speed)}KPH</p>
+              <p class="card-text">Humidity: ${data.list[39].main.humidity}%</p>
+            </div>
+          </div>
+        </div>`
+        
+        // Append the fiveDayForecast data to the fiveDayElDiv
+        fiveDayForecast.append(fiveDayElDiv);
     })
 };
