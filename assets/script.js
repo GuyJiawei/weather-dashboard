@@ -28,6 +28,7 @@ function saveSearch() {
   }
   localStorage.setItem("searchhistory", JSON.stringify(searchHistory));
   getWeatherApi();
+  createButtons();
 }
 
 searchButton.addEventListener('click', saveSearch);{
@@ -151,30 +152,28 @@ function secondFetch(lat, lon) {
 };
 
 
-// function createButtons() {
-//   // Get the items stored in local storage
-//   var history = JSON.parse(localStorage.getItem("searchhistory"));
+function createButtons() {
+  // Get the items stored in local storage
+  var history = JSON.parse(localStorage.getItem("searchhistory"));
 
-//   // Check if there are any items in local storage
-//   if (history !== null) {
-//     // Create a container for the buttons
-//     var buttonContainer = document.createElement("div");
+  // Check if there are any items in local storage
+  if (history !== null) {
+    // Create a container for the buttons
+    var buttonContainer = document.createElement("div");
 
-//     // Loop through the items in local storage
-//     for (var i = 0; i < history.length; i++) {
-//       // Create a button for each item
-//       var button = document.createElement("button");
-//       button.innerHTML = history[i];
+    // Loop through the items in local storage
+    for (var i = 0; i < history.length; i++) {
+      // Create a button for each item
+      var button = document.createElement("button");
+      button.innerHTML = history[i];
 
-//       // Add the button to the container
-//       buttonContainer.appendChild(button);
-//     }
+      // Add the button to the container
+      buttonContainer.appendChild(button);
+    }
 
-//     // Add the button container to the page
-//     historyButtons.appendChild(buttonContainer);
-//   }
-// };
+    // Add the button container to the page
+    historyButtons.appendChild(buttonContainer);
+  }
+};
 
-
-// createButtons();
 getWeatherApi();
