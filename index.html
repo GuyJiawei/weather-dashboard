@@ -11,14 +11,14 @@
 </head>
 
 <body>
-    <main>
+    <main class="container">
         <div id="header" class="p-2 mb-1 bg-primary text-white">
             <h1>Weather Dashboard</h1>
         </div>
 
-        <div class="container">
+        <div class="flex-row justify-space-between">
             <div class="row">
-                <div class="col-3 p-0 bg-light" id="sidebar">
+                <div class="col-3 p-0 bg-light" display= "inline-block" id="sidebar">
                     <h2 class="sidebar-input">Search for a City:</h2>
                     
                     <div class="input-group mb-3">
@@ -33,21 +33,22 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container" display= "inline-block float-right">
             <div class="row">
-                <div class="col-9 p-0 bg-light">
+                <div class="col-8 p-0 bg-light">
                     <div id="currentDay"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-9 p-0 bg-light">
+                        <div id="fiveDayForecast"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-9 p-0 bg-light">
-                    <div id="fiveDayForecast"></div>
-                </div>
-            </div>
-        </div>
+        
     </main>
 
 <script src="./assets/script.js"></script>
