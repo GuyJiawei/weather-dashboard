@@ -15,8 +15,8 @@
         <h1>Weather Dashboard</h1>
     </div>
 
-    <main class="row">
-        <div class="col-3 float-left">
+    <main class="container row">
+        <div class="col-3" display= "float-left">
             <div class="card" id="sidebar">
                 <h2 class="sidebar-input">Search for a City:</h2>
                 <input type="text" class="form-control" placeholder="City Name" aria-label="city" aria-describedby="addon-wrapping" id="cityInput">
@@ -24,11 +24,11 @@
             </div>
 
             <div class="card">
-                <button type="button" class="btn btn-outline-secondary" style="display: none;"></button>
+                <button type="button" class="btn btn-outline-secondary" id="historyButtons"></button>
             </div>
         </div>
 
-        <div class="col-9 float-right"></div>
+        <div class="col-9" display= "float-right"></div>
             <div class="card">
                 <div id="currentDay"></div>
             </div>
