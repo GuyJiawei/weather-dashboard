@@ -93,7 +93,7 @@ function secondFetch(lat, lon) {
         <div class="card-group">
           <div class="card">
             <div class="card-body">
-              <p class="card-text">${data.list[9].dt_txt}</p>>
+              <p class="card-text">${data.list[9].dt_txt}</p>
               <img src='https://openweathermap.org/img/w/${data.list[9].weather[0].icon}.png' alt=${data.list[9].weather.description}''>
               <p class="card-text">Temp: ${Math.trunc(data.list[9].main.feels_like)}°C</p>
               <p class="card-text">Wind: ${Math.trunc(data.list[9].wind.speed)}KPH</p>
@@ -102,7 +102,7 @@ function secondFetch(lat, lon) {
           </div>
           <div class="card">
             <div class="card-body">
-              <p class="card-text">${data.list[17].dt_txt}</p>>
+              <p class="card-text">${data.list[17].dt_txt}</p>
               <img src='https://openweathermap.org/img/w/${data.list[17].weather[0].icon}.png' alt=${data.list[17].weather.description}''>
               <p class="card-text">Temp: ${Math.trunc(data.list[17].main.feels_like)}°C</p>
               <p class="card-text">Wind: ${Math.trunc(data.list[17].wind.speed)}KPH</p>
@@ -111,15 +111,16 @@ function secondFetch(lat, lon) {
           </div>
           <div class="card">
             <div class="card-body">
-              <p class="card-text">${data.list[25].dt_txt}</p>>
+              <p class="card-text">${data.list[25].dt_txt}</p>
               <img src='https://openweathermap.org/img/w/${data.list[25].weather[0].icon}.png' alt=${data.list[25].weather.description}''>
               <p class="card-text">Temp: ${Math.trunc(data.list[25].main.feels_like)}°C</p>
               <p class="card-text">Wind: ${Math.trunc(data.list[25].wind.speed)}KPH</p>
               <p class="card-text">Humidity: ${data.list[25].main.humidity}%</p>
             </div>
+          </div>
           <div class="card">
             <div class="card-body">
-              <p class="card-text">${data.list[33].dt_txt}</p>>
+              <p class="card-text">${data.list[33].dt_txt}</p>
               <img src='https://openweathermap.org/img/w/${data.list[33].weather[0].icon}.png' alt=${data.list[33].weather.description}''>
               <p class="card-text">Temp: ${Math.trunc(data.list[33].main.feels_like)}°C</p>
               <p class="card-text">Wind: ${Math.trunc(data.list[33].wind.speed)}KPH</p>
@@ -128,7 +129,7 @@ function secondFetch(lat, lon) {
           </div>
           <div class="card">
             <div class="card-body">
-              <p class="card-text">${data.list[39].dt_txt}</p>>
+              <p class="card-text">${data.list[39].dt_txt}</p>
               <img src='https://openweathermap.org/img/w/${data.list[39].weather[0].icon}.png' alt=${data.list[39].weather.description}''>
               <p class="card-text">Temp: ${Math.trunc(data.list[39].main.feels_like)}°C</p>
               <p class="card-text">Wind: ${Math.trunc(data.list[39].wind.speed)}KPH</p>
