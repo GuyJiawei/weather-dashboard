@@ -1,6 +1,8 @@
 
 var searchButton = document.querySelector('#search-button');
 var searchBox = document.querySelector('#cityInput');
+var historyButtons = document.querySelector('#historyButtons');
+
 let currentSearch = localStorage.getItem("currentSearch") || ["Sydney"];
 
 // Select the main div where the weather data will be displayed
@@ -16,19 +18,26 @@ function saveSearch() {
   //redefines global variable currentSearch
   currentSearch = document.querySelector("#cityInput").value;
   localStorage.setItem("currentSearch", currentSearch);
-  if (localStorage.getItem('searchhistory')) {
-    searchHistory = [localStorage.getItem('searchhistory')];
+  if (localStorage.getItem('searchHistory')) {
+    searchHistory = [localStorage.getItem('searchHistory')];
   } else {
     searchHistory = ['Sydney'];
   }
-  console.log(searchHistory);
-  searchHistory.unshift(currentSearch);
-  localStorage.setItem("searchhistory", searchHistory);
+  if (!searchHistory.includes(currentSearch)) {
+    searchHistory.unshift(currentSearch);
+  }
+  localStorage.setItem("searchhistory", JSON.stringify(searchHistory));
   getWeatherApi();
 }
 
 searchButton.addEventListener('click', saveSearch);{
 }
+
+searchBox.addEventListener('keydown', function(event){
+  if (event.keyCode === 13) {
+    event.preventDefault();
+      saveSearch()}
+})
 
 // Fetch weather data for each city in the list
 function getWeatherApi() {
@@ -141,4 +150,31 @@ function secondFetch(lat, lon) {
     })
 };
 
+
+// function createButtons() {
+//   // Get the items stored in local storage
+//   var history = JSON.parse(localStorage.getItem("searchhistory"));
+
+//   // Check if there are any items in local storage
+//   if (history !== null) {
+//     // Create a container for the buttons
+//     var buttonContainer = document.createElement("div");
+
+//     // Loop through the items in local storage
+//     for (var i = 0; i < history.length; i++) {
+//       // Create a button for each item
+//       var button = document.createElement("button");
+//       button.innerHTML = history[i];
+
+//       // Add the button to the container
+//       buttonContainer.appendChild(button);
+//     }
+
+//     // Add the button container to the page
+//     historyButtons.appendChild(buttonContainer);
+//   }
+// };
+
+
+// createButtons();
 getWeatherApi();
