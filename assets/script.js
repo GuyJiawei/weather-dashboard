@@ -1,9 +1,7 @@
 
 var searchButton = document.querySelector('#search-button');
 var searchBox = document.querySelector('#cityInput');
-let currentSearch;
-
-
+let currentSearch = localStorage.getItem("currentSearch") || ["Sydney"];
 
 // Select the main div where the weather data will be displayed
 var currentDayForecast = document.querySelector('#currentDay');
@@ -142,3 +140,5 @@ function secondFetch(lat, lon) {
         fiveDayForecast.append(fiveDayElDiv);
     })
 };
+
+getWeatherApi();

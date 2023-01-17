@@ -11,30 +11,29 @@
 </head>
 
 <body>
-    <main class="row">
-        <div id="header" class="col 12 p-0 mb-1 bg-primary text-white">
-            <h1>Weather Dashboard</h1>
-        </div>
+    <div id="header" class="col 12 p-0 mb-1 bg-primary text-white">
+        <h1>Weather Dashboard</h1>
+    </div>
 
-        <div class="flex-row">
-            <div class="col-3 p-3 bg-light" display= "inline-block" id="sidebar">
+    <main class="row">
+        <div class="col-3 float-left">
+            <div class="card" id="sidebar">
                 <h2 class="sidebar-input">Search for a City:</h2>
-                
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="City Name" aria-label="city" aria-describedby="addon-wrapping" id="cityInput">
-                    <button type="button" class="btn btn-success" id="search-button">Let's Go</button>
-                </div>
+                <input type="text" class="form-control" placeholder="City Name" aria-label="city" aria-describedby="addon-wrapping" id="cityInput">
+                <button type="button" class="btn btn-success" id="search-button">Let's Go</button>
             </div>
 
-            <div class="col-3 p-0 bg-light">
+            <div class="card">
                 <button type="button" class="btn btn-outline-secondary" style="display: none;"></button>
             </div>
+        </div>
 
-            <div class="col-9 p-0 bg-light">
+        <div class="col-9 float-right"></div>
+            <div class="card">
                 <div id="currentDay"></div>
             </div>
 
-            <div class="col-9 p-0 bg-light">
+            <div class="card">
                 <div id="fiveDayForecast"></div>
             </div>
         </div>
