@@ -74,7 +74,8 @@ function secondFetch(lat, lon) {
     })
     .then(function (data){
         console.log(data);
-
+        currentDayForecast.innerHTML = "";
+        fiveDayForecast.innerHTML = "";
         // Create a new div to display the weather data
         var weatherElDiv = document.createElement('div');
 
